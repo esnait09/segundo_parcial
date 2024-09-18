@@ -5,6 +5,7 @@ from constants import *
 from sounds import *
 
 def handle_vertical_collision(player, objects, dy):
+<<<<<<< HEAD
     """
     Maneja la colisión vertical entre el jugador y los objetos del juego.
     
@@ -21,6 +22,8 @@ def handle_vertical_collision(player, objects, dy):
         list: Lista de objetos con los que el jugador ha colisionado.
     """
     
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     collided_objects = []
     for obj in objects:
         if pygame.sprite.collide_mask(player, obj):
@@ -36,6 +39,7 @@ def handle_vertical_collision(player, objects, dy):
     return collided_objects
 
 def collide(player, objects, dx):
+<<<<<<< HEAD
     """
     Verifica si el jugador colisiona con algún objeto al moverse horizontalmente.
 
@@ -51,6 +55,8 @@ def collide(player, objects, dx):
     Returns:
         pygame.sprite.Sprite: El primer objeto con el que el jugador colisiona, o None si no hay colisión.
     """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     player.move(dx, 0)
     player.update()
     collided_object = None
@@ -64,6 +70,7 @@ def collide(player, objects, dx):
     return collided_object
 
 def get_background(name):
+<<<<<<< HEAD
     """
     Carga la imagen de fondo y genera una lista de posiciones para los tiles del fondo.
 
@@ -80,6 +87,8 @@ def get_background(name):
             - pygame.Surface: La imagen del fondo.
     """
     
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     image = pygame.image.load(join("src", "assets", "Background", name))
     _, _, width, height = image.get_rect()
     tiles = []
@@ -92,6 +101,7 @@ def get_background(name):
     return tiles, image
 
 def handle_move(player, objects, enemies, coins):
+<<<<<<< HEAD
     """
     Maneja el movimiento del jugador y la interacción con objetos, enemigos y disparos.
 
@@ -105,6 +115,8 @@ def handle_move(player, objects, enemies, coins):
         enemies (list): Lista de enemigos en el juego.
         coins (pygame.sprite.Group): Grupo de monedas en el juego.
     """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     keys = pygame.key.get_pressed()
     
     player.x_vel = 0
@@ -131,6 +143,7 @@ def handle_move(player, objects, enemies, coins):
             player.make_hit()  # Activa el estado de golpe del jugador
 
 def draw(window, background, bg_image, player, objects, enemies, coins, elapsed_time, score):
+<<<<<<< HEAD
     """
     Dibuja el fondo, los objetos, el jugador, los enemigos, las monedas y la interfaz en la ventana del juego.
 
@@ -149,6 +162,8 @@ def draw(window, background, bg_image, player, objects, enemies, coins, elapsed_
         elapsed_time (float): El tiempo transcurrido desde el inicio del juego.
         score (int): La puntuación actual del jugador.
     """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     for tile in background:
         window.blit(bg_image, tile)
         

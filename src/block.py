@@ -4,6 +4,7 @@ from os import listdir
 from os.path import isfile, join
 
 class Block(Object):
+<<<<<<< HEAD
     """
     Representa un bloque del terreno en el juego.
 
@@ -24,10 +25,15 @@ class Block(Object):
         size (int): Tamaño del bloque (ancho y alto).
         terrain (str): Tipo de terreno del bloque (e.g., "terrain1", "terrain2", "terrain3").
         """
+=======
+    def __init__(self, x, y, size, terrain):
+        #heredamos la clase objecto y creamos la mascara 
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         super().__init__(x, y, size, size)
         block = self.get_block(size, terrain)
         self.image.blit(block, (0, 0))
         self.mask = pygame.mask.from_surface(self.image)
+<<<<<<< HEAD
 
     def get_block(self, size, terrain):
         """
@@ -40,17 +46,27 @@ class Block(Object):
         Retorna:
         pygame.Surface: Superficie con la imagen del bloque escalada.
         """
+=======
+        
+    def get_block(self, size, terrain):
+        #adjuntamos los valores y creamos una superficie trasparente 
+
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         path = join("src", "assets", "Terrain", "Terrain.png")
         image = pygame.image.load(path).convert_alpha()
         surface = pygame.Surface((size, size), pygame.SRCALPHA, 32)
 
+<<<<<<< HEAD
         # Define la región de la imagen que corresponde al tipo de terreno
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         if terrain == "terrain1":
             rect = pygame.Rect(96, 70, size, size)
         elif terrain == "terrain2":
             rect = pygame.Rect(96, 70, size, size)
         elif terrain == "terrain3":
             rect = pygame.Rect(96, 70, size, size)
+<<<<<<< HEAD
         else:
             # En caso de un tipo de terreno no reconocido, usa una región predeterminada
             rect = pygame.Rect(0, 0, size, size)
@@ -58,3 +74,8 @@ class Block(Object):
         # Crea y escala la superficie del bloque
         surface.blit(image, (0, 0), rect)
         return pygame.transform.scale2x(surface)
+=======
+        #devuelve la superficie escalada 
+        surface.blit(image, (0, 0), rect)
+        return pygame.transform.scale2x(surface)
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247

@@ -7,12 +7,16 @@ from constants import *
 from boss import Boss
 
 class Player(pygame.sprite.Sprite):
+<<<<<<< HEAD
     """Controla el funcionamiento del sprite del jugador en el juego."""
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     COLOR = (255, 0, 0)
     GRAVITY = 1
     ANIMATION_DELAY = 4
     
     def __init__(self, x, y, width, height):
+<<<<<<< HEAD
         """
         Inicializa una nueva instancia del jugador.
 
@@ -23,6 +27,8 @@ class Player(pygame.sprite.Sprite):
             height (int): La altura del sprite del jugador.
         """
         
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.rect = pygame.Rect(x, y, width, height)
         self.x_vel = 0
         self.y_vel = 0
@@ -40,6 +46,7 @@ class Player(pygame.sprite.Sprite):
         self.lasers = pygame.sprite.Group()
         
     def load_sprite_sheets(self, dir1, dir2, width, height, direction = False):
+<<<<<<< HEAD
         """
         Carga hojas de sprites desde un directorio, las divide en sprites individuales 
         y las almacena en un diccionario.
@@ -55,6 +62,8 @@ class Player(pygame.sprite.Sprite):
             dict: Un diccionario con los sprites cargados.
         """
         
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         path = join("src", "assets", dir1, dir2)
         images = [f for f in listdir(path) if isfile(join(path, f))]
         
@@ -79,6 +88,7 @@ class Player(pygame.sprite.Sprite):
         return all_sprites    
     
     def flip(self, sprites):
+<<<<<<< HEAD
         """
         Da vuelta la imagen del sprite.
 
@@ -96,10 +106,16 @@ class Player(pygame.sprite.Sprite):
         """
         Dispara un láser desde la posición actual del jugador.
         """
+=======
+        return [pygame.transform.flip(sprite, True, False) for sprite in sprites]
+
+    def shoot(self):
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         laser = Laser(self.rect.centerx, self.rect.centery - 40, 10, 5, self.direction)
         self.lasers.add(laser)
 
     def update_lasers(self, enemies, coins):
+<<<<<<< HEAD
         """
         Actualiza la lógica de disparo del jugador y maneja las colisiones con enemigos.
 
@@ -107,11 +123,14 @@ class Player(pygame.sprite.Sprite):
             enemies (pygame.sprite.Group): El grupo de enemigos.
             coins (pygame.sprite.Group): El grupo de monedas.
         """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.lasers.update()
         hits = pygame.sprite.groupcollide(self.lasers, enemies, True, False)
         
         for laser, hit_enemies in hits.items():
             for enemy in hit_enemies:
+<<<<<<< HEAD
                 if isinstance(enemy, Boss):  
                     enemy.lives -= 1  
                     if enemy.lives <= 0 and enemy.dead:  
@@ -131,6 +150,23 @@ class Player(pygame.sprite.Sprite):
         """
         Realiza un salto, ajustando la velocidad vertical y reiniciando el contador de saltos.
         """
+=======
+                if isinstance(enemy, Boss):  # Si el enemigo es un jefe
+                    enemy.lives -= 1  # Reduce las vidas del jefe
+                    if enemy.lives <= 0 and enemy.dead:  # Si el jefe no tiene vidas
+                        enemies.remove(enemy)  # Elimina al jefe
+                        coin = Coin(enemy.rect.centerx, enemy.rect.centery)  # Crea un nuevo coin
+                        coins.add(coin) 
+                else:  # Si el enemigo es un enemigo común
+                    enemies.remove(enemy)  # Elimina al enemigo
+                    coin = Coin(enemy.rect.centerx, enemy.rect.centery)  # Crea un nuevo coin
+                    coins.add(coin) 
+
+    def draw_lasers(self, win):
+        self.lasers.draw(win)
+        
+    def jump(self):
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.y_vel = -self.GRAVITY * 8
         self.animation_count = 0
         self.jump_count += 1
@@ -138,6 +174,7 @@ class Player(pygame.sprite.Sprite):
             self.fall_count = 0
     
     def move(self, dx, dy):
+<<<<<<< HEAD
         """
         Mueve al jugador en la dirección especificada.
 
@@ -146,44 +183,56 @@ class Player(pygame.sprite.Sprite):
             dy (int): La cantidad de movimiento vertical.
         """
         
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         if 0 <= self.rect.x + dx <= WIDTH - self.rect.width:
             self.rect.x += dx
         if 0 <= self.rect.y + dy <= HEIGHT - self.rect.height:
             self.rect.y += dy
         
     def make_hit(self):
+<<<<<<< HEAD
         """
         Maneja el estado del jugador al ser golpeado.
         """
     
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.hit = True
         self.hit_count = 0
         
     def move_left(self, vel):
+<<<<<<< HEAD
         """
         Mueve al jugador hacia la izquierda.
 
         Args:
             vel (int): La velocidad de movimiento.
         """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.x_vel = -vel
         if self.direction != "left":
             self.direction = "left"
             self.animation_count = 0
         
     def move_right(self, vel):
+<<<<<<< HEAD
         """
         Mueve al jugador hacia la derecha.
 
         Args:
             vel (int): La velocidad de movimiento.
         """     
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.x_vel = vel
         if self.direction != "right":
             self.direction = "right"
             self.animation_count = 0
             
     def loop(self, fps):
+<<<<<<< HEAD
         """
         Actualiza la lógica del jugador, incluyendo la física de caída, 
         el estado de invulnerabilidad y la animación del sprite.
@@ -195,6 +244,12 @@ class Player(pygame.sprite.Sprite):
         self.move(self.x_vel, self.y_vel)
             
         if self.hit and pygame.time.get_ticks() - self.invulnerable_time > 1000:  # 1 segundos de invulnerabilidad
+=======
+        self.y_vel += min(1, (self.fall_count / fps) * self.GRAVITY)
+        self.move(self.x_vel, self.y_vel)
+            
+        if self.hit and pygame.time.get_ticks() - self.invulnerable_time > 2000:  # 2 segundos de invulnerabilidad
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
             self.hit = False
             self.invulnerable = False
             
@@ -202,25 +257,34 @@ class Player(pygame.sprite.Sprite):
         self.update_sprite()
         
     def landed(self):
+<<<<<<< HEAD
         """
         Reinicia los movimientos y contadores cuando el jugador aterriza.
         """
     
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.fall_count = 0
         self.y_vel = 0
         self.jump_count = 0
         
     def hit_head(self):
+<<<<<<< HEAD
         """
         Maneja el estado del jugador al chocar contra un obstáculo, invirtiendo la velocidad vertical.
         """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.count = 0
         self.y_vel *= -1
         
     def update_sprite(self):
+<<<<<<< HEAD
         """
         Actualiza el sprite del jugador según su estado actual y la dirección.
         """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         sprite_sheet = "idle"
         if self.hit:
             sprite_sheet = "hit"
@@ -240,15 +304,21 @@ class Player(pygame.sprite.Sprite):
         self.update()
         
     def update(self):
+<<<<<<< HEAD
         """
         Actualiza el rectángulo y la máscara del sprite del jugador para colisiones.
         """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.rect = self.sprite.get_rect(topleft=(self.rect.x, self.rect.y))
         self.mask = pygame.mask.from_surface(self.sprite)
         
     def draw(self, win,):
+<<<<<<< HEAD
         """
         Dibuja el sprite del jugador en la ventana del juego.
         """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         win.blit(self.sprite, (self.rect.x, self.rect.y))
         

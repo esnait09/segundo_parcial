@@ -16,6 +16,7 @@ import os
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 class Level:
+<<<<<<< HEAD
     """
     Representa un nivel del juego.
 
@@ -49,6 +50,9 @@ class Level:
     """
     
     def __init__(self, window, pause_menu, game_over_menu, enemies, objects, floor, background_image, max_score, level_number, player_name,game_win_menu):
+=======
+    def __init__(self, window, pause_menu, game_over_menu, enemies, objects, floor, background_image, max_score, level_number, player_name):
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.window = window
         self.player_name = player_name
         self.max_score = max_score
@@ -69,6 +73,7 @@ class Level:
         self.player = Player(30, 100, 50, 50)
         self.coins = pygame.sprite.Group()
         self.running = True
+<<<<<<< HEAD
         self.game_win_menu = game_win_menu
 
     def run(self):
@@ -77,6 +82,10 @@ class Level:
 
         Controla el flujo del juego, maneja eventos, actualiza estados, y dibuja los elementos en la ventana.
         """       
+=======
+
+    def run(self):
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         pygame.mixer.music.play(-1)
         
         enemies_added = False
@@ -113,8 +122,11 @@ class Level:
                     game_over_sound.play()  # Reproduce el sonido de "game over"
                     self.game_over_menu(self.window)
                     
+<<<<<<< HEAD
                     
                     
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
             for enemy in self.enemies:
                 enemy.loop(self.objects)
                 if isinstance(enemy, Boss):  # Si el enemigo es un jefe
@@ -146,10 +158,13 @@ class Level:
 
             if self.score >= self.max_score:  # Si se ha alcanzado la puntuación máxima
                 from menus import level_menu
+<<<<<<< HEAD
                 if self.level_number == 3 :
                     pygame.mixer.music.stop()  # Detén la música de fondo
                     win_sound.play()  # Reproduce el sonido de "victoria"
                     self.game_win_menu(self.window)
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
                 # Guardar el nombre del jugador, el nivel, la puntuación y el tiempo en un archivo JSON
                 scores = []
                 if os.path.exists('scores.json'):
@@ -159,8 +174,13 @@ class Level:
                     scores.append({'player': self.player_name, 'level': self.level_number, 'score': self.score, 'time': elapsed_time})
                     json.dump(scores, f)
                 # Volver al menú de niveles
+<<<<<<< HEAD
                 #level_menu(self.window)
                 break
+=======
+                level_menu(self.window)
+                
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
             font = pygame.font.SysFont("Minecraft", 25)
             lives_text = font.render("Vidas: " + str(self.player.lives), True, (0, 0, 0))
             self.window.blit(lives_text, (10, 40))
@@ -214,25 +234,38 @@ def pause_menu(window):
         pygame.display.update()
 
 def game_over_menu(window):
+<<<<<<< HEAD
     """
     Muestra el menú de fin de juego.
 
     window -- La ventana donde se dibuja el menú de fin de juego.
     """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     from menus import main_menu
     
     button_width = 200
     button_height = 50
+<<<<<<< HEAD
     padding = 20  
 
     
+=======
+    padding = 20  # Espacio entre los botones
+
+    # Calcula las coordenadas x para cada botón
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     total_width = 3 * button_width + 2 * padding
     start_x = (WIDTH - total_width) / 2
     restart_button_x = start_x
     back_button_x = start_x + button_width + padding
     quit_button_x = start_x + 2 * button_width + 2 * padding
 
+<<<<<<< HEAD
     
+=======
+    # Las coordenadas y son las mismas para todos los botones
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     button_y = HEIGHT - button_height - padding
 
     back_button = Button("Atras", back_button_x, button_y, button_width, button_height, WHITE, SKY, action=main_menu)
@@ -261,6 +294,7 @@ def game_over_menu(window):
             button.draw(window)
 
         pygame.display.update()
+<<<<<<< HEAD
             
 
 def game_win_menu(window):
@@ -311,4 +345,6 @@ def game_win_menu(window):
             button.draw(window)
 
         pygame.display.update()
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
             

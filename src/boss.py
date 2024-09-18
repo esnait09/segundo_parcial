@@ -6,6 +6,7 @@ from os.path import isfile, join
 from sounds import *
 
 class Boss(Enemy):
+<<<<<<< HEAD
     """Controla el comportamiento del jefe enemigo en el juego."""
     def __init__(self, x, y, width, height, sprites):
         """
@@ -18,6 +19,9 @@ class Boss(Enemy):
             height (int): La altura del sprite del jefe.
             sprites (dict): Un diccionario de sprites del jefe.
         """
+=======
+    def __init__(self, x, y, width, height, sprites):
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         super().__init__(x, y, width, height, sprites)
         self.lives = 3  # El jefe muere después de 3 golpes
         self.bullets = pygame.sprite.Group()  # Los disparos del jefe
@@ -31,6 +35,7 @@ class Boss(Enemy):
         self.bullet_image = pygame.transform.scale(bullet_image, (40, 40))  
 
     def load_enemy_sprites(self, dir1, dir2, width, height, direction=False):
+<<<<<<< HEAD
         """
         Carga hojas de sprites del jefe desde un directorio y las divide en sprites individuales.
 
@@ -45,6 +50,8 @@ class Boss(Enemy):
             dict: Un diccionario con los sprites cargados.
         """
         
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         path = join("src", "assets", dir1, dir2)
         images = [f for f in listdir(path) if isfile(join(path, f))]
         all_sprites = {}
@@ -69,9 +76,12 @@ class Boss(Enemy):
         return all_sprites
 
     def death_animation(self):
+<<<<<<< HEAD
         """
         Reproduce la animación de muerte del jefe y marca al jefe como muerto si la animación ha terminado.
         """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         # Cambia los sprites a los sprites de muerte
         sprite_sheet_name = "death_" + self.direction
         sprites = self.sprites[sprite_sheet_name]
@@ -86,12 +96,15 @@ class Boss(Enemy):
             self.dead = True
 
     def loop(self, objects):
+<<<<<<< HEAD
         """
         Actualiza el comportamiento del jefe, incluyendo el movimiento vertical y el disparo.
 
         Args:
             objects (list): Lista de objetos del juego, como el jugador y otros enemigos.
         """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
 
         # Cambia la dirección si llega a los bordes
         if self.rect.y <= 0 or self.rect.y >= 25:
@@ -115,9 +128,12 @@ class Boss(Enemy):
         self.image = sprite
         
     def shoot(self):
+<<<<<<< HEAD
         """
         Dispara una bala desde la posición actual del jefe si han pasado más de 2 segundos desde el último disparo.
         """
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         now = pygame.time.get_ticks()  # La hora actual
         if now - self.last_shot > 2000:  # Si han pasado más de 2 segundos desde el último disparo
             bullet = BulletBoss(self.rect.centerx, self.rect.centery, -self.bullet_speed, 0, self.bullet_image)  # Crea un nuevo disparo
@@ -125,6 +141,7 @@ class Boss(Enemy):
             self.last_shot = now  # Actualiza la última vez que el jefe disparó
 
     def update_bullets(self, player):
+<<<<<<< HEAD
         """
         Actualiza los disparos del jefe y maneja las colisiones con el jugador.
 
@@ -132,6 +149,8 @@ class Boss(Enemy):
             player (Player): La instancia del jugador en el juego.
         """
         
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         from levels import window, game_over_menu
         self.bullets.update()  # Actualiza los disparos
         for bullet in self.bullets:  # Comprueba si algún disparo ha golpeado al jugador
@@ -146,6 +165,7 @@ class Boss(Enemy):
                         
 
     def draw(self, win):
+<<<<<<< HEAD
         """
         Dibuja al jefe y sus disparos en la ventana del juego.
 
@@ -153,11 +173,14 @@ class Boss(Enemy):
             win (pygame.Surface): La superficie de la ventana del juego.
         """
         
+=======
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         super().draw(win)  # Dibuja al jefe
         for bullet in self.bullets:  # Dibuja los disparos
             bullet.draw(win)
 
 class BulletBoss(pygame.sprite.Sprite):
+<<<<<<< HEAD
     """Representa las balas disparadas por el jefe enemigo."""
     def __init__(self, x, y, dx, dy, image):
         """
@@ -170,6 +193,9 @@ class BulletBoss(pygame.sprite.Sprite):
             dy (int): La velocidad vertical de la bala.
             image (pygame.Surface): La imagen que representa la bala.
         """    
+=======
+    def __init__(self, x, y, dx, dy, image):
+>>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         super().__init__()
         self.image = image  # Usa la imagen pasada como argumento
         self.rect = self.image.get_rect()  # Obtiene el rectángulo del disparo a partir de la imagen
