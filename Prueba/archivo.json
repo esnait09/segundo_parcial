@@ -1,0 +1,20 @@
+[
+    {
+        "player": "Alice",
+        "score": 5000,
+        "time": "2024-09-19 14:30:00",
+        "level": 3
+    },
+    {
+        "player": "Bob",
+        "score": 3500,
+        "time": "2024-09-19 15:00:00",
+        "level": 2
+    },
+    {
+        "player": "Charlie",
+        "score": 4200,
+        "time": "2024-09-19 16:45:00",
+        "level": 4
+    }
+]

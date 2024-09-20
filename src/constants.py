@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 #estable las constantes del juego como el color, el ancho y largo de la ventana, 
 # ademas establece constantes de botones como el ancho y largo.
 
 
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
 size_screen = (980,700)
 origin = (0, 0)
 
@@ -37,7 +34,4 @@ start_x = (WIDTH - total_width) / 2
 back_button_x = start_x + 3 * button_width + 3 * padding
 button_y = HEIGHT - button_height - padding
 
-<<<<<<< HEAD
-=======
 # 
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247

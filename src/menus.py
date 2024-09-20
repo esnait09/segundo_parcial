@@ -1,23 +1,14 @@
 import pygame
 import sys
 from button import Button
-<<<<<<< HEAD
 from levels import game_over_menu, game_win_menu, pause_menu, quit_game, Level
-=======
-from levels import game_over_menu, pause_menu, quit_game, Level
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
 from block import Block
 from enemies import Enemy
 from constants import *
 from boss import Boss
 import os
 import json
-<<<<<<< HEAD
 from load_json import load_json_to_database
-=======
-import sqlite3
-from sql import load_json_to_database
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
 
 
 block_size = 96
@@ -25,14 +16,11 @@ terrain = "terrain3"
 floor = [Block(i * block_size, HEIGHT - block_size, block_size, terrain) for i in range(-WIDTH // block_size, WIDTH * 2 // block_size)]
 
 def main_menu(window):
-<<<<<<< HEAD
     """
     Muestra el menú principal del juego.
 
     window -- La ventana donde se dibuja el menú principal.
     """
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     button_width = 200
     button_height = 50
     padding = 20  
@@ -76,15 +64,12 @@ def main_menu(window):
         pygame.display.update()
         
 def get_player_name(window):
-<<<<<<< HEAD
     """
     Muestra una caja de entrada para que el jugador ingrese su nombre.
 
     window -- La ventana donde se dibuja la caja de entrada.
     """
     
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     w, h = 200, 50  # Define el ancho y la altura de la caja de entrada
     x = (WIDTH - w) / 2
     y = (HEIGHT - h) / 2
@@ -108,11 +93,7 @@ def get_player_name(window):
                 else:
                     active = False
                 color = color_active if active else color_inactive
-<<<<<<< HEAD
             if event.type == pygame.KEYDOWN: # logica de la caja de texto 
-=======
-            if event.type == pygame.KEYDOWN:
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
                 if active:
                     if event.key == pygame.K_RETURN:
                         return text
@@ -129,14 +110,11 @@ def get_player_name(window):
         pygame.display.flip()
         
 def start_level1(window):
-<<<<<<< HEAD
     """
     Inicia el nivel 1 del juego.
 
     window -- La ventana donde se inicia el nivel 1.
     """
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     #CREAMOS LOS ENEMIGOS DEL NIVEL  1 
     player_name = get_player_name(window)
     enemies_level_1 = pygame.sprite.Group(
@@ -161,7 +139,6 @@ def start_level1(window):
                
 
     # Crear el nivel con los corazones
-<<<<<<< HEAD
     level_1_final = Level(window, pause_menu, game_over_menu, enemies_level_1, objects_level_1, floor, "segundo.jpeg", max_score=4, level_number=1, player_name=player_name,game_win_menu=game_win_menu)
     level_1_final.run()
     
@@ -180,17 +157,6 @@ def start_level2(window,player_name=None):
     if player_name == None:
         player_name = get_player_name(window)
 
-=======
-    level_1_final = Level(window, pause_menu, game_over_menu, enemies_level_1, objects_level_1, floor, "segundo.jpeg", max_score=4, level_number=1, player_name=player_name)
-    level_1_final.run()
-    
-    if not enemies_level_1:
-        # Si todos los enemigos han sido eliminados, iniciar el siguiente nivel
-        start_level2(window)
-    
-def start_level2(window):
-    player_name = get_player_name(window)
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     enemies_level_2 = pygame.sprite.Group(
     Enemy(630, 33, 50, 50, ("Characters", "Enemy2", 48, 48, True)),
     Enemy(460, 317, 50, 50, ("Characters", "Enemy2", 48, 48, True)),
@@ -216,7 +182,6 @@ def start_level2(window):
                Block(block_size * 3.5, HEIGHT - block_size * 5, block_size, terrain), 
                Block(block_size * 2.5, HEIGHT - block_size * 5, block_size, terrain),]
     
-<<<<<<< HEAD
     level_2_final = Level(window, pause_menu, game_over_menu, enemies_level_2, objects_level_2, floor, "fondo.jpeg", max_score=5, level_number=2, player_name=player_name,game_win_menu=game_win_menu)
     
     level_2_final.run()
@@ -233,14 +198,6 @@ def start_level3(window,player_name=None):
     
     if player_name == None:
         player_name = get_player_name(window)
-=======
-    level_2_final = Level(window, pause_menu, game_over_menu, enemies_level_2, objects_level_2, floor, "fondo.jpeg", max_score=5, level_number=2, player_name=player_name)
-    
-    level_2_final.run()
-    
-def start_level3(window):
-    player_name = get_player_name(window)
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     boss = Boss(650, 20, 400, 600, ("Characters", "Boss", 90, 90, True))
     
     enemies_level_3 = pygame.sprite.Group(boss,
@@ -268,24 +225,17 @@ def start_level3(window):
                Block(block_size * 3, HEIGHT - block_size * 5, block_size, terrain),
                Block(block_size * 4, HEIGHT - block_size * 5, block_size, terrain),]
     
-<<<<<<< HEAD
     level_3_final = Level(window, pause_menu, game_over_menu, enemies_level_3, objects_level_3, floor, "primer.jpeg", max_score=11, level_number=3, player_name=player_name,  game_win_menu=game_win_menu)
-=======
-    level_3_final = Level(window, pause_menu, game_over_menu, enemies_level_3, objects_level_3, floor, "primer.jpeg", max_score=11, level_number=3, player_name=player_name)
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     
     level_3_final.run()
         
 def level_menu(window):
-<<<<<<< HEAD
     """
     Muestra el menú de selección de niveles, con botones para los niveles disponibles y un botón de retroceso.
 
     Parameters:
     window (pygame.Surface): La superficie de la ventana donde se dibuja el menú.
     """
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     button_width = 200
     button_height = 50
     padding = 20  # Espacio entre los botones
@@ -302,19 +252,11 @@ def level_menu(window):
     button_y = HEIGHT - button_height - padding
 
     level1_button = Button("Nivel 1", level1_button_x, button_y, button_width, button_height, WHITE, SKY, action=start_level1)
-<<<<<<< HEAD
     if os.path.exists('scores.json'): #verifica que el archivo json exista si es asi inserta en la base de datos 
         with open('scores.json', 'r') as f:    # Abre el archivo 'scores.json' en modo de lectura ('r')
             scores = json.load(f)    # Carga el contenido del archivo JSON en la variable 'scores'
             json_filename = 'scores.json' # Define el nombre del archivo JSON como 'scores.json'
             database_filename = 'your_database.db' 
-=======
-    if os.path.exists('scores.json'):
-        with open('scores.json', 'r') as f:
-            scores = json.load(f)
-            json_filename = 'scores.json'
-            database_filename = 'your_database.db'
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
             load_json_to_database(json_filename, database_filename)
     else:
         scores = []
@@ -359,7 +301,6 @@ def level_menu(window):
         pygame.display.update()  
 
 def instructions_menu(window):
-<<<<<<< HEAD
     """
     Muestra el menú de instrucciones con un botón de retroceso.
 
@@ -367,8 +308,6 @@ def instructions_menu(window):
     window (pygame.Surface): La superficie de la ventana donde se dibuja el menú de instrucciones.
     """
     
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     back_button = Button("Atras", 350, 600,200, 50, (255, 0, 0), (128, 0, 0), action=main_menu)
     buttons = [back_button]
     background_instructions = pygame.transform.scale(pygame.image.load("./src/assets/Background/instrucc.png"), size_screen)
@@ -395,7 +334,6 @@ def instructions_menu(window):
         pygame.display.update()
         
 def make_action(level):
-<<<<<<< HEAD
     """
     Crea una función lambda que muestra las puntuaciones para un nivel específico.
 
@@ -414,11 +352,6 @@ def score_menu(window):
     Parameters:
     window (pygame.Surface): La superficie de la ventana donde se dibuja el menú de puntuaciones.
     """
-=======
-    return lambda window: show_scores(window, level)
-        
-def score_menu(window):
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     with open('scores.json', 'r') as f:
         scores = json.load(f)
         json_filename = 'scores.json'
@@ -469,7 +402,6 @@ def score_menu(window):
         pygame.display.update() 
 
 def show_scores(window, level):
-<<<<<<< HEAD
     """
     Muestra las puntuaciones más altas para un nivel específico.
 
@@ -478,8 +410,6 @@ def show_scores(window, level):
     level (int): El nivel para el cual se deben mostrar las puntuaciones.
     """
     
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     with open('scores.json', 'r') as f:
         scores = json.load(f)
         json_filename = 'scores.json'

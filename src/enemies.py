@@ -3,7 +3,6 @@ from os import listdir
 from os.path import isfile, join
 
 class Enemy(pygame.sprite.Sprite):
-<<<<<<< HEAD
     """
     Representa un enemigo en el juego.
 
@@ -21,14 +20,11 @@ class Enemy(pygame.sprite.Sprite):
     draw(self, win) -- Dibuja el enemigo en la ventana del juego.
     """
 
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
     COLOR = (255, 0, 0)
     ANIMATION_DELAY = 4
     MOVE_SPEED = 3  # Velocidad de movimiento
 
     def __init__(self, x, y, width, height, sprites):
-<<<<<<< HEAD
         """
         Inicializa el enemigo con posición, tamaño y sprites.
 
@@ -38,8 +34,6 @@ class Enemy(pygame.sprite.Sprite):
         height -- Altura del enemigo.
         sprites -- Tupla con los parámetros necesarios para cargar los sprites.
         """
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         super().__init__()
         self.rect = pygame.Rect(x, y, width, height)
         self.x_vel = self.MOVE_SPEED  # Inicia moviéndose a la derecha
@@ -51,7 +45,6 @@ class Enemy(pygame.sprite.Sprite):
         self.right_limit = x + 100  # Límite derecho
 
     def flip(self, sprites):
-<<<<<<< HEAD
         """
         Invierte horizontalmente los sprites.
 
@@ -75,13 +68,6 @@ class Enemy(pygame.sprite.Sprite):
         Retorna:
         Un diccionario con sprites organizados por nombre y dirección.
         """
-=======
-        #realiza una lista de sprites y los da vuelta 
-        return [pygame.transform.flip(sprite, True, False) for sprite in sprites]
-
-    def load_enemy_sprites(self, dir1, dir2, width, height, direction=False):
-        #carga los enemigos a una lista. les da las alcturas y direcciones 
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         path = join("src", "assets", dir1, dir2)
         images = [f for f in listdir(path) if isfile(join(path, f))]
         all_sprites = {}
@@ -104,28 +90,21 @@ class Enemy(pygame.sprite.Sprite):
         return all_sprites
 
     def move(self, dx, dy):
-<<<<<<< HEAD
         """
         Mueve al enemigo por los ejes x e y.
 
         dx -- Desplazamiento en el eje x.
         dy -- Desplazamiento en el eje y.
         """
-=======
-        #movemos el enemigo 
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.rect.x += dx
         self.rect.y += dy 
 
     def loop(self, objects):
-<<<<<<< HEAD
         """
         Actualiza la posición y animación del enemigo.
 
         objects -- Lista de objetos con los que el enemigo puede interactuar.
         """
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         # Cambia la dirección si llega a los bordes
         if self.rect.x <= self.left_limit or self.rect.x >= self.right_limit:
             self.x_vel = -self.x_vel
@@ -154,15 +133,11 @@ class Enemy(pygame.sprite.Sprite):
         self.image = sprite
 
     def draw(self, win):
-<<<<<<< HEAD
         """
         Dibuja el enemigo en la ventana del juego.
 
         win -- La ventana donde se debe dibujar el enemigo.
         """
-=======
-        #dubujamos al enemigo 
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         sprite_sheet_name = "walk_" + self.direction
         sprites = self.sprites[sprite_sheet_name]
         sprite_index = (self.animation_count // self.ANIMATION_DELAY) % len(sprites)

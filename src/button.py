@@ -2,7 +2,6 @@ import pygame
 from constants import *
 
 class Button:
-<<<<<<< HEAD
     """
     Representa un botón interactivo en la interfaz gráfica.
 
@@ -33,9 +32,6 @@ class Button:
         hover_color (tuple): Color del botón cuando el ratón está sobre él.
         action (callable): Acción a ejecutar cuando el botón es presionado (por defecto None).
         """
-=======
-    def __init__(self, text, x, y, width, height, color, hover_color, action=None):
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         self.text = text
         self.x = x
         self.y = y
@@ -48,15 +44,12 @@ class Button:
         self.hovered = False
 
     def draw(self, win):
-<<<<<<< HEAD
         """
         Dibuja el botón en la ventana.
 
         Parámetros:
         win (pygame.Surface): La superficie (ventana) donde se dibuja el botón.
         """
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         pygame.draw.rect(win, self.hover_color if self.hovered else self.color, self.rect, border_radius=5)
         font = pygame.font.SysFont("Poppins", 25)
         text = font.render(self.text, True, BLACK)
@@ -64,7 +57,6 @@ class Button:
         win.blit(text, text_rect)
 
     def is_hovered(self, pos):
-<<<<<<< HEAD
         """
         Verifica si el ratón está sobre el botón.
 
@@ -103,12 +95,6 @@ class ToggleButton(Button):
         action1 (callable): Acción a ejecutar en el primer estado.
         action2 (callable): Acción a ejecutar en el segundo estado.
         """
-=======
-        self.hovered = self.rect.collidepoint(pos)
-        
-class ToggleButton(Button):
-    def __init__(self, text1, text2, x, y, width, height, color1, color2, action1, action2):
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         super().__init__(text1, x, y, width, height, color1, color2, action1)
         self.text1 = text1
         self.text2 = text2
@@ -116,20 +102,13 @@ class ToggleButton(Button):
         self.action2 = action2
 
     def toggle(self):
-<<<<<<< HEAD
         """
         Alterna entre los dos estados del botón.
         Cambia el texto y la acción del botón según su estado actual.
         """
-=======
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
         if self.text == self.text1:
             self.text = self.text2
             self.action = self.action2
         else:
             self.text = self.text1
-<<<<<<< HEAD
             self.action = self.action1
-=======
-            self.action = self.action1
->>>>>>> 5f6ab14ab925bbc8f971a77440cca031ecb5b247
